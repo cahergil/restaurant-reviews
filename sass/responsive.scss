@@ -1,0 +1,60 @@
+@media screen and (max-width: 450px) {
+
+
+
+}
+
+@media screen and (max-width: 700px) {
+        .filter-options {
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+
+}
+
+@media screen and (max-width: 800px) {
+
+        #restaurants-list  {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            li {
+                width: 100%;
+            }
+
+        }
+
+
+
+}
+
+@media screen and (min-width: 801px) {
+
+        #restaurants-list  {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            align-items: stretch;
+            justify-content: center;
+
+            li {
+                width: 35%;
+            }
+
+        }
+}
+
+@media screen and (min-width: 950px) {
+
+	body {
+
+		width: 950px;
+		margin-left: auto;
+		margin-right: auto;
+
+	}
+}
