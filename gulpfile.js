@@ -32,9 +32,9 @@ gulp.task('jshint',function(){
 gulp.task('sass', function() {
 	gulp.src('sass/**/*.scss')
 		.pipe(sass().on('error', sass.logError))
-		.pipe(autoprefixer({
-			browsers: ['last 2 versions']
-		}))
+		// .pipe(autoprefixer({
+		// 	browsers: ['last 2 versions']
+		// }))
 		.pipe(gulp.dest('dist/css'))
 		.pipe(browserSync.stream());
 
