@@ -5,6 +5,39 @@
     justify-content: center;
     align-items: center; } }
 
+@media screen and (max-width: 800px) {
+  .inside #maincontent #map-container-details {
+    position: relative;
+    top: 132px;
+    width: 100%;
+    height: 300px;
+    z-index: 999; }
+  .inside #maincontent #restaurant-container {
+    width: 90%; }
+    .inside #maincontent #restaurant-container #restaurant-name {
+      text-align: center; }
+    .inside #maincontent #restaurant-container #restaurant-img {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; }
+    .inside #maincontent #restaurant-container #restaurant-cuisine {
+      margin-left: auto;
+      margin-right: auto; }
+    .inside #maincontent #restaurant-container #restaurant-address {
+      text-align: center; }
+    .inside #maincontent #restaurant-container #restaurant-hours {
+      margin-left: auto;
+      margin-right: auto; }
+  .inside #maincontent #reviews-container {
+    width: 90%; }
+    .inside #maincontent #reviews-container #reviews-list li {
+      margin-left: auto;
+      margin-right: auto; }
+  .inside header #breadcrumb {
+    width: 100%; }
+  .inside #footer {
+    width: 100%; } }
+
 @media screen and (min-width: 801px) {
   #maincontent #restaurants-list {
     display: flex;
@@ -16,7 +49,7 @@
       width: 25%; } }
 
 @media screen and (min-width: 1200px) {
-  body {
+  #body-index {
     width: 1200px;
     margin-left: auto;
     margin-right: auto; } }

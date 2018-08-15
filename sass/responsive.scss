@@ -1,3 +1,5 @@
+
+
 @media screen and (max-width: 450px) {
 
 
@@ -16,6 +18,83 @@
 
 }
 
+@media screen and (max-width: 800px) {
+
+    .inside {
+
+			#maincontent {
+	            	#map-container-details {
+
+		        		// background: blue none repeat scroll 0 0;
+		        		// height: 87%;
+		        		// position: fixed;
+		        		// right: 0;
+		        		// top: 80px;
+		        		// width: 50%;
+		        		position: relative;
+		        		top: 132px;
+		        		width: 100%;
+		        		height: 300px;
+		        		z-index: 999;
+	    			}
+
+
+                    #restaurant-container {
+
+                        width: 90%;
+                        #restaurant-name {
+                            text-align: center;
+                        }
+                        #restaurant-img {
+                             display: block;
+                             margin-left: auto;
+                             margin-right: auto;
+                        }
+                        #restaurant-cuisine {
+                            margin-left: auto;
+                            margin-right: auto;
+
+                        }
+
+                        #restaurant-address {
+                            text-align: center;
+                        }
+
+                        #restaurant-hours {
+                            margin-left: auto;
+                            margin-right: auto;
+                        }
+
+
+                    }
+
+                    #reviews-container {
+                        width: 90%;
+                        #reviews-list li {
+                            // width: 100%;
+                            margin-left: auto;
+                            margin-right: auto;
+                        }
+                    }
+
+
+        	}
+
+        header {
+
+            #breadcrumb {
+                width: 100%;
+            }
+        }
+
+        #footer {
+            width: 100%;
+        }
+    }
+
+
+
+}
 
 @media screen and (min-width: 801px) {
 
@@ -42,7 +121,7 @@
 
 @media screen and (min-width: 1200px) {
 
-	body {
+	#body-index {
 
 		width: 1200px;
 		margin-left: auto;
