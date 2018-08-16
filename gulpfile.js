@@ -1,12 +1,61 @@
-var gulp = require('gulp');
-var sass = require('gulp-sass');
-var jshint = require('gulp-jshint');
-var autoprefixer = require('gulp-autoprefixer');
-var browserSync = require('browser-sync').create();
+const gulp = require('gulp');
+const sass = require('gulp-sass');
+const jshint = require('gulp-jshint');
+const autoprefixer = require('gulp-autoprefixer');
+const browserSync = require('browser-sync').create();
 // var exec = require('child_process').exec;
+const imageResize = require('gulp-image-resize');
+const del = require('del');
+const rename = require('gulp-rename');
 
-gulp.task('serve', ['sass','scripts','copy-html','copy-images','copy-data','watch'],function(){
+
+
+gulp.task('serve', ['sass','scripts','copy-html','copy-images','copy-data','resize-images','watch'],function(){
 	console.log('starting serve task');
+});
+
+gulp.task('resize-images',()=>{
+	const images = gulp.src('img/*')
+	del (['dist/img/*'])
+	images
+	.pipe(imageResize({
+		width: 800,
+		crop: false,
+		upscale: false,
+		quality: 0.6,
+		imageMagick: true
+	}))
+	.pipe(rename((path)=>{
+		path.basename +='_large_2x'
+	}))
+	.pipe(gulp.dest('dist/img'))
+
+	images
+	.pipe(imageResize({
+		width: 400,
+		crop: false,
+		upscale: false,
+		quality: 0.6,
+		imageMagick: true
+	}))
+	.pipe(rename((path)=>{
+		path.basename +='_large_1x'
+	}))
+	.pipe(gulp.dest('dist/img'))
+
+
+	images
+	.pipe(imageResize({
+		width: 250,
+		crop: false,
+		upscale: false,
+		quality: 0.6,
+		imageMagick: true
+	}))
+	.pipe(rename((path)=>{
+		path.basename +='_medium'
+	}))
+	.pipe(gulp.dest('dist/img'))
 });
 
 gulp.task('jshint',function(){
@@ -59,6 +108,8 @@ gulp.task('copy-data',function(){
 		.pipe(gulp.dest('dist/data'));
 });
 
+
+
 // gulp.task('launch-server',function(cb){
 // 	exec('python -m http.server 8000',function(err,stdout,stderr){
 // 		console.log(stdout);
@@ -71,7 +122,7 @@ gulp.task('watch', function() {
   gulp.watch('js/**/*.js', ['jshint']);
   gulp.watch('sass/**/*.scss', ['sass']).on('change', browserSync.reload);
   gulp.watch("*.html",['copy-html']).on('change', browserSync.reload);
-  gulp.watch("js/**/.js",['scripts']).on('change',browserSync.reload);
+  gulp.watch("js/**/*.js",['scripts']).on('change',browserSync.reload);
 	browserSync.init({
 		server: './dist'
 	});

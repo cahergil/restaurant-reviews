@@ -3,7 +3,7 @@ let restaurants,
   cuisines;
 var newMap;
 var markers = [];
-var echo = 0;
+
 
 /**
  * Fetch neighborhoods and cuisines as soon as the page is loaded.
@@ -160,10 +160,24 @@ fillRestaurantsHTML = (restaurants = self.restaurants) => {
 createRestaurantHTML = (restaurant) => {
   const li = document.createElement('li');
 
+  // const image = document.createElement('img');
+  // image.className = 'restaurant-img';
+  // image.src = DBHelper.imageUrlForRestaurant(restaurant);
+  // li.append(image);
+  const picture = document.createElement('picture');
+
+  const source = document.createElement('source');
+  source.media ='(min-width:800px)';
+  source.srcset =`${DBHelper.imageUrlForRestaurant(restaurant)}_large_1x.jpg 1x,${DBHelper.imageUrlForRestaurant(restaurant)}_large_2x.jpg 2x`;
+  picture.append(source);
+
   const image = document.createElement('img');
   image.className = 'restaurant-img';
-  image.src = DBHelper.imageUrlForRestaurant(restaurant);
-  li.append(image);
+  image.src = `${DBHelper.imageUrlForRestaurant(restaurant)}_medium.jpg`;
+  picture.append(image);
+
+  li.append(picture);
+
 
   const name = document.createElement('h1');
   name.innerHTML = restaurant.name;
