@@ -9,12 +9,25 @@ var markers = [];
  * Fetch neighborhoods and cuisines as soon as the page is loaded.
  */
 document.addEventListener('DOMContentLoaded', (event) => {
-  console.log('hello World');
+
   initMap(); // added
   fetchNeighborhoods();
   fetchCuisines();
 });
 
+window.addEventListener('load',(event) => {
+    console.log('inside load event');
+    if('serviceWorker' in navigator) {
+
+        navigator.serviceWorker.register('sw.js',{scope: '/'})
+        .then(
+            (reg) => console.log('Service Worker registration successful,scope is',reg.scope)
+        )
+        .catch(
+            (error) => console.log('Service Worker registration failed:', error)
+        );
+    }
+});
 /**
  * Fetch all neighborhoods and set their HTML.
  */

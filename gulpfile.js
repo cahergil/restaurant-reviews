@@ -10,7 +10,7 @@ const rename = require('gulp-rename');
 
 
 
-gulp.task('serve', ['sass','scripts','copy-html','copy-images','copy-data','resize-images','watch'],function(){
+gulp.task('serve', ['sass','scripts','service-worker','copy-html','copy-data','resize-images','watch'],function(){
 	console.log('starting serve task');
 });
 
@@ -90,18 +90,23 @@ gulp.task('sass', function() {
 });
 
 gulp.task('scripts',function(){
-	gulp.src('js/**/*.js')
+	gulp.src(['js/**/*.js','!js/**/sw.js'])
 		.pipe(gulp.dest('dist/js'));
+});
+
+gulp.task('service-worker',function(){
+	gulp.src('js/**/sw.js')
+		.pipe(gulp.dest('dist'));
 });
 
 gulp.task('copy-html',function(){
 	gulp.src('*.html')
 		.pipe(gulp.dest('./dist'));
 });
-gulp.task('copy-images', function() {
-	gulp.src('img/*')
-		.pipe(gulp.dest('dist/img'));
-});
+// gulp.task('copy-images', function() {
+// 	gulp.src('img/*')
+// 		.pipe(gulp.dest('dist/img'));
+// });
 
 gulp.task('copy-data',function(){
 	gulp.src('data/*.json')
@@ -122,7 +127,8 @@ gulp.task('watch', function() {
   gulp.watch('js/**/*.js', ['jshint']);
   gulp.watch('sass/**/*.scss', ['sass']).on('change', browserSync.reload);
   gulp.watch("*.html",['copy-html']).on('change', browserSync.reload);
-  gulp.watch("js/**/*.js",['scripts']).on('change',browserSync.reload);
+  gulp.watch(['js/**/*.js','!js/**/sw.js'],['scripts']).on('change',browserSync.reload);
+  gulp.watch('js/**/sw.js',['service-worker']).on('change',browserSync.reload)
 	browserSync.init({
 		server: './dist'
 	});
